@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Rize.Model.Entities;
+
+public partial class VwSalesByDateAndOrder2
+{
+    public DateTime? OrderDate { get; set; }
+
+    public int OrdOrderId { get; set; }
+
+    public int? NumberOfOrderLines { get; set; }
+
+    public decimal SettlementDollarAmount { get; set; }
+}
