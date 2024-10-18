@@ -1,0 +1,431 @@
+﻿@{    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Detail";
+}
+<div class="border-bottom pb-4">
+    <div class="row g-6">
+
+        <div class="col-12 col-md-3 col-xl-3">
+            <div class="card mb-1 h-100">
+                <div class="card-body d-flex flex-column justify-content-between pb-3">
+                    <div class="row align-items-center g-5 mb-3 text-center text-sm-start">
+                        <div class="col-12 col-sm-auto mb-sm-2">
+                            <h2>Luis Bello</h2>
+                        </div>
+                        <div class="col-12 col-sm-auto text-center">
+                            <h3>Ansolo Lazinatov</h3>
+                            <small class="text-body-secondary">Last Login: 10/10/24 4:56 pm EST</small>
+                            
+                        </div>
+                    </div>
+                   @*  <div class="d-flex flex-between-center border-top border-dashed pt-4">
+                        <div>
+                            <h6>Roles</h6>
+                            <p class="fs-7 text-body-secondary mb-0">5</p>
+                        </div>
+                        <div>
+                            <h6>Stores</h6>
+                            <p class="fs-7 text-body-secondary mb-0">5</p>
+                        </div>
+                        
+                    </div> *@
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-9 col-xl-9 ">
+            <div class="mb-1">
+                <div class="row g-3">
+                    @*    <div class="col-12 col-sm-6">
+                    <div class="form-icon-container">
+                    <div class="form-floating">
+                    <input class="form-control form-icon-input" id="firstName" type="text" placeholder="First Name" />
+                    <label class="text-body-tertiary form-icon-label" for="firstName">FIRST NAME</label>
+                    </div><span class="fa-solid fa-user text-body fs-9 form-icon"></span>
+                    </div>
+                    </div> *@
+
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="FirstName">First name</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="FirstName" type="text" aria-describedby="FirstName" required="" value="" />
+                            <div class="invalid-feedback">Please fill first name.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="MiddleName">Middle Name</label>
+                        <div class="input-group">
+                            <input class="form-control" id="MiddleName" type="text" aria-describedby="MiddleName" value="" />
+                            <div class="invalid-feedback"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="LastName">Last name</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="LastName" type="text" aria-describedby="LastName" required="" value="" />
+                            <div class="invalid-feedback">Please fill last name.</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="OfficePhone">Office Phone</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="OfficePhone" type="text" aria-describedby="OfficePhone" value="" />
+                            <div class="invalid-feedback">Please Office Phone.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="OfficePhone">Mobile Phone</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="OfficePhone" type="text" aria-describedby="OfficePhone" value="" />
+                            <div class="invalid-feedback">Please Office Phone.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="SkypeId">Skype Address</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="SkypeId" type="text" aria-describedby="SkypeId" value="" />
+                            <div class="invalid-feedback">Please enter an Skype address.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="NickName">Nick Name</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="NickName" type="text" aria-describedby="NickName" value="" />
+                            <div class="invalid-feedback">Please Google Account.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="GoogleId">Google Account</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="GoogleId" type="text" aria-describedby="GoogleId" value="" />
+                            <div class="invalid-feedback">Please Google Account.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="DepartmentId">Department</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="DepartmentId" type="text" aria-describedby="DepartmentId" value="" />
+                            <div class="invalid-feedback">Please Enter a Department.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="SupervisorId">Supervisor</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" id="SupervisorId" type="text" aria-describedby="SupervisorId" value="" />
+                            <div class="invalid-feedback">Please Enter a Supervisor.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="IsSeasonalTemp"></label>
+                        <div class="input-group has-validation mt-1">
+                            <div class="form-check">
+                                <input class="form-check-input" id="flexCheckChecked" type="checkbox" value="" checked="" />
+                                <label class="form-check-label" for="flexCheckChecked">Is Seasonal</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-4">
+                        <label class="form-label" for="Gender"></label>
+                        <div class="input-group has-validation mt-1">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="inlineRadio1" type="radio" name="inlineRadioOptions" value="option1" />
+                                <label class="form-check-label" for="inlineRadio1">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" id="inlineRadio2" type="radio" name="inlineRadioOptions" value="option2" />
+                                <label class="form-check-label" for="inlineRadio2">Female</label>
+                            </div>
+                            <div class="invalid-feedback">Please Enter a Gender.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-end mb-1">
+                <div>
+                    <button class="btn btn-phoenix-secondary me-2"></button>
+                    <button class="btn btn-phoenix-primary"></button>
+                </div>
+            </div>
+
+            @*  <div class="row gy-5">
+            <div class="col-12 col-md-6">
+            <h4 class="text-body-emphasis">Transfer Ownership</h4>
+            <p class="text-body-tertiary">Transfer this account to another person or to a company repository.</p>
+            <button class="btn btn-phoenix-warning">Transfer</button>
+            </div>
+            <div class="col-12 col-md-6">
+            <h4 class="text-body-emphasis">Account Deletion</h4>
+            <p class="text-body-tertiary">Transfer this account to another person or to a company repository.</p>
+            <button class="btn btn-phoenix-danger">Delete account</button>
+            </div>
+            </div> *@
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-underline fs-9" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a class="nav-link active" id="company-tab" data-bs-toggle="tab" href="#tab-company" role="tab" aria-controls="tab-company" aria-selected="true">Company Information</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="roles-tab" data-bs-toggle="tab" href="#tab-roles" role="tab" aria-controls="tab-roles" aria-selected="false" tabindex="-1">Roles and Privileges</a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a class="nav-link" id="stores-tab" data-bs-toggle="tab" href="#tab-stores" role="tab" aria-controls="tab-stores" aria-selected="false" tabindex="-1">Stores</a>
+    </li>
+    @* <li class="nav-item" role="presentation"><a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#tab-contact" role="tab" aria-controls="tab-contact" aria-selected="false" tabindex="-1">Contact</a></li> *@
+</ul>
+<div class="tab-content mt-3" id="myTabContent">
+    <div class="tab-pane fade show active" id="tab-company" role="tabpanel" aria-labelledby="company-tab">
+        <div class="row g-6">
+            <div class="col-12">
+                <div class="row gx-3 mb-6 gy-6 gy-sm-3">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-2">
+                                <h4 class="mb-4">Company Info</h4>
+                            </div>
+                            <div class="col-10">
+                                <div class="form-check form-switch col-md-4">
+                                    <input class="form-check-input" id="flexSwitchCheckDefault" type="checkbox" />
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Is Active</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-4">
+                                <label class="form-label" for="EmployeeId">Employee Number</label>
+                                <div class="input-group has-validation">
+                                    <input class="form-control" id="EmployeeId" type="text" aria-describedby="EmployeeId" value="" />
+                                    <div class="invalid-feedback">Please enter a Employee Number.</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <label class="form-label" for="Company">Company</label>
+                                <div class="input-group has-validation">
+                                    <input class="form-control" id="Company" type="text" aria-describedby="Company" value="" />
+                                    <div class="invalid-feedback">Please enter a Company.</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <label class="form-label" for="RoleTitle">Role Title</label>
+                                <div class="input-group has-validation">
+                                    <input class="form-control" id="RoleTitle" type="text" aria-describedby="RoleTitle" value="" />
+                                    <div class="invalid-feedback">Please enter a Role Title.</div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-4">
+                                <label class="form-label" for="TitleDescription">Role Description</label>
+                                <textarea class="form-control" id="TitleDescription" rows="3"> </textarea>
+                            </div>
+
+                            <div class="col-12 col-sm-4">
+                                <label class="form-label" for="Notes">Notes</label>
+                                <textarea class="form-control" id="Notes" rows="3"> </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="tab-roles" role="tabpanel" aria-labelledby="roles-tab">
+        <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
+            <h5 class="text-body mb-3">Roles</h5>
+            <div class="row" style="max-height: 350px">
+                <div class="col-12 overflow-x-auto" style="display: contents">
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleAccounting" type="checkbox">
+                        <label class="form-check-label " for="roleAccounting">ReadySetGift</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleFidelityTaylorBackdoor" type="checkbox">
+                        <label class="form-check-label " for="roleFidelityTaylorBackdoor">JustCMS</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleAdministrator" type="checkbox">
+                        <label class="form-check-label " for="roleAdministrator">Administrator</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleAutoOrderProcessing" type="checkbox">
+                        <label class="form-check-label " for="roleAutoOrderProcessing">Auto Order Processing ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleCMSAddOn" type="checkbox">
+                        <label class="form-check-label " for="roleCMSAddOn">CMS Add On</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleCSAgent" type="checkbox">
+                        <label class="form-check-label " for="roleCSAgent">CS Agent</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleCSSupervisor" type="checkbox">
+                        <label class="form-check-label " for="roleCSSupervisor">CS Supervisor</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleCSTemp" type="checkbox">
+                        <label class="form-check-label " for="roleCSTemp">CS Temp</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleDeveloper" type="checkbox">
+                        <label class="form-check-label " for="roleDeveloper">Developer</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleEstimatedDelivery" type="checkbox">
+                        <label class="form-check-label " for="roleEstimatedDelivery">Estimated Delivery ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleMarketing" type="checkbox">
+                        <label class="form-check-label" for="roleMarketing">Marketing</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleOutboundSales" type="checkbox">
+                        <label class="form-check-label" for="roleOutboundSales">Outbound Sales</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="rolePricing" type="checkbox">
+                        <label class="form-check-label" for="rolePricing">Pricing ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleProductSetup" type="checkbox">
+                        <label class="form-check-label" for="roleProductSetup">Product Setup ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleProductTeam" type="checkbox">
+                        <label class="form-check-label" for="roleProductTeam">Product Team</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleRizeSuperAdmin" type="checkbox">
+                        <label class="form-check-label" for="roleRizeSuperAdmin">Rize Super Admin</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleSiteContent" type="checkbox">
+                        <label class="form-check-label " for="roleSiteContent">Site Content ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleSuperAdministrator" type="checkbox">
+                        <label class="form-check-label " for="roleSuperAdministrator">Super Administrator</label>
+                    </div>
+                    <div class="form-check form-switch col-md-3">
+                        <input class="form-check-input" id="roleUsersRolesAdministrator" type="checkbox">
+                        <label class="form-check-label " for="roleUsersRolesAdministrator">Users & Roles Administrator</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="tab-pane fade" id="tab-stores" role="tabpanel" aria-labelledby="stores-tab">
+        <div class="border-bottom border-translucent border-dashed pb-3 mb-4">
+            <div class="row border-translucent">
+                <div class="col-12 mb-4">
+                    <div class="search-box w-200 mb-2 mb-sm-0 " style="max-width:60rem;">
+                        <form class="position-relative ">
+                            <input class="form-control search-input search" type="search" placeholder="Search store" aria-label="Search" />
+                            <span class="fas fa-search search-box-icon"></span>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="max-height: 350px">
+                <div class="col-12 overflow-x-auto" style="display: contents">
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleAccounting" type="checkbox">
+                        <label class="form-check-label " for="roleAccounting">ReadySetGift</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleFidelityTaylorBackdoor" type="checkbox">
+                        <label class="form-check-label " for="roleFidelityTaylorBackdoor">JustCMS</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleAdministrator" type="checkbox">
+                        <label class="form-check-label " for="roleAdministrator">Administrator</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleAutoOrderProcessing" type="checkbox">
+                        <label class="form-check-label " for="roleAutoOrderProcessing">Auto Order Processing ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleCMSAddOn" type="checkbox">
+                        <label class="form-check-label " for="roleCMSAddOn">CMS Add On</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleCSAgent" type="checkbox">
+                        <label class="form-check-label " for="roleCSAgent">CS Agent</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleCSSupervisor" type="checkbox">
+                        <label class="form-check-label " for="roleCSSupervisor">CS Supervisor</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleCSTemp" type="checkbox">
+                        <label class="form-check-label " for="roleCSTemp">CS Temp</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleDeveloper" type="checkbox">
+                        <label class="form-check-label " for="roleDeveloper">Developer</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleEstimatedDelivery" type="checkbox">
+                        <label class="form-check-label " for="roleEstimatedDelivery">Estimated Delivery ADD ON</label>
+                    </div>
+
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleMarketing" type="checkbox">
+                        <label class="form-check-label" for="roleMarketing">Marketing</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleOutboundSales" type="checkbox">
+                        <label class="form-check-label" for="roleOutboundSales">Outbound Sales</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="rolePricing" type="checkbox">
+                        <label class="form-check-label" for="rolePricing">Pricing ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleProductSetup" type="checkbox">
+                        <label class="form-check-label" for="roleProductSetup">Product Setup ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleProductTeam" type="checkbox">
+                        <label class="form-check-label" for="roleProductTeam">Product Team</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleRizeSuperAdmin" type="checkbox">
+                        <label class="form-check-label" for="roleRizeSuperAdmin">Rize Super Admin</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleSiteContent" type="checkbox">
+                        <label class="form-check-label " for="roleSiteContent">Site Content ADD ON</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleSuperAdministrator" type="checkbox">
+                        <label class="form-check-label " for="roleSuperAdministrator">Super Administrator</label>
+                    </div>
+                    <div class="form-check form-switch col-md-4">
+                        <input class="form-check-input" id="roleUsersRolesAdministrator" type="checkbox">
+                        <label class="form-check-label " for="roleUsersRolesAdministrator">Users & Roles Administrator</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#company-tab').click();
+        $('#company-tab').addClass('active');
+    });
+
+</script>
+

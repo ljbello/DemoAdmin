@@ -1,0 +1,237 @@
+﻿@using Kendo.Mvc.UI
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Users";
+}
+
+<div class="mt-2">
+    <div class="row g-4">
+        <div class="col-12 col-xl-11 order-1 order-xl-0">
+            <div class="mb-9">
+                <div class="card shadow-none border my-4">
+                    <div class="card-header p-4 border-bottom bg-body">
+                        <div class="row g-3 justify-content-between align-items-end">
+                            <div class="col-12 col-md">
+                                <h4 class="text-body mb-0">Users</h4>
+                                <p class="text-body-tertiary lead mb-2"><a class="btn btn-link p-0" href="https://listjs.com/" target="_blank">Documentation Rize Users<span class="ms-1" data-feather="chevron-right"></span></a>
+                            </div>
+                            <div class="col col-md-auto">
+                                <nav class="nav justify-content-end doc-tab-nav align-items-center" role="tablist">
+                                    <button class="btn btn-primary mb-2 mb-sm-0" type="button" id="BtnNewUser">+ New User</button>
+                                    <button class="btn btn-primary mb-2 mb-sm-0 d-none" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="BtnNewUserModal"></button>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="p-4 code-to-copy">
+                            <div id="userTable">
+                                <div class="table-responsive">
+                                    @(Html.Kendo().Grid<Rize.Admin.Data.DTO.User.UserDTO>()
+                                        .Name("userList")
+                                        .Columns(columns =>
+                                        {
+                                            columns.Bound(p => p.LastName).HtmlAttributes(new { style = "text-align: center" }).Width(70).ClientTemplate("<a class='' href='/administration/Users/Detail/#=UserId#'>#= LastName #</a>");
+                                            columns.Bound(p => p.FirstName).Width(70).ClientTemplate("<a class='' href='/administration/Users/Detail/#=UserId#'>#= FirstName #</a>");
+                                            columns.Bound(p => p.Initials).Width(50).ClientTemplate("<a class='' href='/administration/Users/Detail/#=UserId#'>#= Initials #</a>");
+                                            columns.Bound(p => p.IsActive).Width(50).ClientTemplate("<a class='' href='/administration/Users/Detail/#=UserId#'>#= IsActive #</a>");
+                                            columns.Bound(p => p.Department).Width(100).ClientTemplate("<a class='' href='/administration/Users/Detail/#=UserId#'>#= RoleName #</a>");
+                                            columns.Bound(p => p.RoleName).Width(140).ClientTemplate("<a class='' href='/administration/Users/Detail/#=UserId#'>#= RoleName #</a>");
+                                            columns.Bound(p => p.EmailAddress).Width(140).ClientTemplate("<a class='' href='/administration/Users/Detail/#=UserId#'>#= EmailAddress #</a>");
+                                            columns.Bound(p => p.LastLogin).Width(70).Filterable(false).Format("{0:MM/dd/yyyy}");
+                                        })
+
+                                        .Pageable()
+                                        .Sortable()
+                                        .Scrollable()
+                                        .Filterable()
+                                        .HtmlAttributes(new { style = "height:550px;" })
+                                        .Pageable(pager => pager.AlwaysVisible(false).PageSizes(new int[] { 5, 10, 20, 50, 100 }))
+                                        .DataSource(dataSource => dataSource
+                                        .WebApi()
+                                        .PageSize(20)
+                                        .Read(read => read.Action("UserList", "Users"))
+                                        )
+                                        )
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="staticBackdrop" tabindex="-1" data-bs-backdrop="static" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header justify-content-between bg-primary">
+                <h5 class="modal-title text-white dark__text-gray-1100" id="staticBackdropLabel">Add new user</h5><button class="btn p-1" type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times fs-9 text-white dark__text-gray-1100"></span></button>
+            </div>
+            <form class="needs-validation" novalidate="" id="CreateUser">
+                <div class="modal-body">
+                    <div class="row g-6">
+                        <div class="col-12">
+                            <div class="mb-1">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="EmailAddress">Email</label>
+                                        <div class="input-group has-validation">
+                                            <input class="form-control" id="EmailAddress" type="email" aria-describedby="EmailAddress" value="" required="" />
+                                            <div class="invalid-feedback">Please provide a valid e-mail address.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="FirstName">First name</label>
+                                        <div class="input-group has-validation">
+                                            <input class="form-control" id="FirstName" type="text" aria-describedby="FirstName" value="" required="" />
+                                            <div class="invalid-feedback">Please provide a First name.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="LastName">Last name</label>
+                                        <div class="input-group has-validation">
+                                            <input class="form-control" id="LastName" type="text" aria-describedby="LastName" value="" required="" />
+                                            <div class="invalid-feedback">Please provide a Last name.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="Department">Department</label>
+                                        <div class="input-group has-validation">
+                                            <select class="form-select" id="Department" name="Department" required="">
+                                                <option selected="" disabled="" value="">Choose...</option>                                                
+                                            </select>
+                                            <div class="invalid-feedback">Please select a department.</div>
+                                        </div>
+                                    </div>
+                                      <div class="col-md-12">
+                                        <label class="form-label" for="Department">Supervisor</label>
+                                        <div class="input-group has-validation">
+                                            <select class="form-select" id="Supervisor" name="Supervisor" required="">
+                                                <option selected="" disabled="" value="">Choose...</option>                                                
+                                            </select>
+                                            <div class="invalid-feedback">Please select a Supervisor.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label" for="Role">Role</label>
+                                        <div class="input-group has-validation">
+                                            <input class="form-control" id="Role" type="text" aria-describedby="Role" value="" required="" />
+                                            <div class="invalid-feedback">Please provide a role.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Cancel</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#BtnNewUser").click(async function (e) {
+        e.preventDefault();
+        rize.utils.spinner.show();
+        // Call to /administration/users/GetUserDepartments and populate #Department Select option.
+        let departmentsReady = await GetUserDepartments();
+        let supervisorsReady = await GetSupervisors();
+
+        if (departmentsReady && supervisorsReady) {
+            $('#staticBackdrop').modal('show');
+        }
+        rize.utils.spinner.hide();
+    });
+
+    async function GetUserDepartments() {
+        try {
+            let response = await $.ajax({
+                url: '/administration/users/GetUserDepartments',
+                type: 'GET',
+                contentType: 'application/json'
+            });
+
+            if (response.length > 0) {
+                let options = '';
+                for (let i = 0; i < response.length; i++) {
+                    options += `<option value="${response[i].DepartmentId}">${response[i].Description}</option>`;
+                }
+                $('#Department').append(options);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error("Error fetching departments:", error);
+            return false;
+        }
+    }
+
+    async function GetSupervisors() {
+        try {
+            let response = await $.ajax({
+                url: '/administration/users/GetEmployees',
+                type: 'GET',
+                contentType: 'application/json'
+            });
+
+            if (response.length > 0) {
+                let options = '';
+                for (let i = 0; i < response.length; i++) {
+                    options += `<option value="${response[i].Id}">${response[i].Name}</option>`;
+                }
+                $('#Supervisor').append(options);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error("Error fetching supervisors:", error);
+            return false;
+        }
+    }
+
+    $('#CreateUser').submit(async function (e) {
+        e.preventDefault();
+        rize.utils.spinner.show();
+
+        if ($('#EmailAddress').val() == '') {
+            alert("wrong email");
+            return;
+        }
+
+        // Create ajax Call to save the user
+        try {
+            let response = await $.ajax({
+                url: '/administration/users/create',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ // Serialize the data to JSON
+                    EmailAddress: $('#EmailAddress').val(),
+                    FirstName: $('#FirstName').val(),
+                    LastName: $('#LastName').val(),
+                    DepartmentId: $('#Department').val(),
+                    Role: $('#Role').val()
+                })
+                });
+
+            // Check if the response contains the redirect URL and toast message
+            if (response.redirectUrl) {               
+                // Redirect to the Detail page
+                window.location.href = response.redirectUrl;
+            } else {
+                
+                $('#staticBackdrop').modal('hide');
+                $('#userList').data('kendoGrid').dataSource.read();
+            }
+        } catch (error) {
+            console.error("Error creating user:", error);
+            alert("There was an error creating the user.");
+        }
+    });
+</script>
