@@ -1,0 +1,52 @@
+﻿@{
+    var toastType = TempData["ToastType"];
+
+    var icon = toastType switch
+    {
+        "success" => "check",
+        "danger" => "x",
+        "warning" => "alert-triangle",
+        "info" => "info",
+        _ => "check"
+    };
+    var toastTitle = TempData["ToastTitle"] != null ? TempData["ToastTitle"] : toastType;
+    TempData["ToastTitle"] = null;
+    TempData["ToastType"] = null;
+}
+
+
+ <div class="position-absolute mb-4" aria-live="polite" aria-atomic="true" style=" min-height: 130px; top: 5% !important; right: 3% !important;">
+    <div class="toast show position-absolute top-0 end-0" id="toastMessage" role="alert" aria-live="assertive" aria-atomic="true" style="display: none">
+        <div class="toast-header">
+            <span class="badge badge-rize ps-0 badge-rize-@toastType">
+                <span class="badge-label"></span>
+                <span class="ms-1" data-feather="@icon" style="height:12.8px;width:12.8px;"></span>
+            </span>
+            <strong class="ms-2">@toastTitle</strong>
+            <button class="btn ms-2 p-0" type="button" data-bs-dismiss="toast" aria-label="Close"><span class="uil uil-times fs-7"></span></button>
+        </div>
+        <div class="toast-body">@TempData["ToastMessage"]</div>
+    </div>
+</div>
+@if (TempData["ToastMessage"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toastElement = document.getElementById('toastMessage');
+            if (toastElement) {
+                // Display the toast using Bootstrap's Toast API
+                $('#toastMessage').show();
+                var toast = new bootstrap.Toast(toastElement);
+                toast.show();
+
+            }
+        });
+    </script>
+}
+else
+{
+    <script>
+        console.log('ToastMessage': @TempData["ToastMessage"])
+    </script>
+}
+ 
