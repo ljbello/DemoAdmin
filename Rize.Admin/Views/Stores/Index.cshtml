@@ -1,0 +1,64 @@
+﻿@using Kendo.Mvc.UI
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Stores";
+}
+
+<div class="mt-2">
+    <div class="row g-4">
+        <div class="col-12 col-xl-10 order-1 order-xl-0">
+            <div class="mb-9">
+                <div class="card shadow-none border my-4">
+                    <div class="card-header p-4 border-bottom bg-body">
+                        <div class="row g-3 justify-content-between align-items-end">
+                            <div class="col-12 col-md">
+                                <h4 class="text-body mb-0">Stores</h4>
+                                <p class="text-body-tertiary lead mb-2"><a class="btn btn-link p-0" href="https://listjs.com/" target="_blank">Documentation Rize Stores<span class="ms-1" data-feather="chevron-right"></span></a>
+                            </div>
+                            <div class="col col-md-auto">
+                                <nav class="nav justify-content-end doc-tab-nav align-items-center" role="tablist">
+                                    <a href="/administration/stores/create" class="btn btn-primary mb-2 mb-sm-0">+ New Store</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="p-4 code-to-copy">
+                            <div id="storeTable" >
+                                <div class="table-responsive">
+                                    @(Html.Kendo().Grid<Rize.Admin.Data.DTO.Store.StoreShortDTO>()
+                                        .Name("storeList")
+                                        .Columns(columns =>
+                                        {
+                                            columns.Bound(p => p.StoreID).HtmlAttributes(new { style = "text-align: center" }).Filterable(false).Width(70).ClientTemplate("<a class='' href='/administration/Stores/Detail/#=StoreID#'>#= StoreID #</a>");
+                                            columns.Bound(p => p.StoCode).Width(70).Filterable(false).ClientTemplate("<a class='' href='/administration/Stores/Detail/#=StoreID#'>#= StoCode #</a>");
+                                            columns.Bound(p => p.StoDomain).Width(200).ClientTemplate("<a class='' href='/administration/Stores/Detail/#=StoreID#'>#= StoDomain #</a>");
+                                            columns.Bound(p => p.ShortName).Width(140).ClientTemplate("<a class='' href='/administration/Stores/Detail/#=StoreID#'>#= ShortName #</a>");
+                                            columns.Bound(p => p.AllowAOP).Width(70).Filterable(false).ClientTemplate("<a class='' href='/administration/Stores/Detail/#=StoreID#'>#= AllowAOP #</a>");
+                                            columns.Bound(p => p.StoNameForWebPageTitles).Width(140).ClientTemplate("<a class='' href='/administration/Stores/Detail/#=StoreID#'>#= StoNameForWebPageTitles #</a>");
+                                            columns.Bound(p => p.LayoutTemplate).Width(100).ClientTemplate("<a class='' href='/administration/Stores/Detail/#=StoreID#'>#= LayoutTemplate #</a>");
+                                            columns.Bound(p => p.StartDate).Width(120).Format("{0:MM/dd/yyyy}");
+                                            columns.Bound(p => p.EndDate).Width(120).Format("{0:MM/dd/yyyy}");
+                                        })
+
+                                        .Pageable()
+                                        .Sortable()
+                                        .Scrollable()
+                                        .Filterable()
+                                        .HtmlAttributes(new { style = "height:550px;" })
+                                        .Pageable(pager => pager.AlwaysVisible(false).PageSizes(new int[] { 5, 10, 20,50, 100 }))
+                                        .DataSource(dataSource => dataSource
+                                        .WebApi()
+                                        .PageSize(20)
+                                        .Read(read => read.Action("StoreList", "Stores"))
+                                        )
+                                        )
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

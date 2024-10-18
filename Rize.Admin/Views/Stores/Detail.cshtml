@@ -1,0 +1,209 @@
+﻿@model Rize.Model.Entities.Store
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Stores";
+}
+
+<style>
+    .k-form-buttons {
+        float: right;
+    }
+</style>
+<div class="demo-section card shadow-none border">
+    <div class="card-header p-4 border-bottom bg-body">
+        <div class="row g-3 justify-content-between align-items-center">
+            <div class="col-12 col-md">
+                <h4 class="text-body mb-0">Store: @Model.StoDescription</h4>
+                <span>StoreId: @Model.StoreID</span>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="p-4">
+            <form class="row g-3 needs-validation" novalidate="" asp-action="Edit" asp-controller="Stores" asp-route-id="@Model.StoreID">
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.StoreID)
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <h5>Details</h5>
+                    </div>
+                </div>
+                <div class="row">                 
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoDescription">Description</label>
+                        <input class="form-control" asp-for="StoDescription" type="text" value="@Model.StoDescription" required="" />
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoDomain">Domain</label>
+                        <input class="form-control" asp-for="StoDomain" type="text" value="@Model.StoDomain" required="" />
+                        <div class="valid-feedback"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoCode">Code</label>
+                        <div class="input-group has-validation">
+                            <input class="form-control" asp-for="StoCode" type="text" aria-describedby="StoCode" required="" value="@Model.StoCode" />
+                            <div class="invalid-feedback">Please provide a Code.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoOrderNumberPrefixLetter">Order Number Prefix Letter</label>
+                        <input class="form-control text-uppercase" asp-for="StoOrderNumberPrefixLetter" type=" text" required="" value="@Model.StoOrderNumberPrefixLetter" />
+                        <div class="invalid-feedback">Please provide a Prefix letter.</div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoGreetingCardDefaultQuantity">Greeting Cards Default Qty.</label>
+                        <input class="form-control" asp-for="StoGreetingCardDefaultQuantity" type="number" value="@Model.StoGreetingCardDefaultQuantity" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoPhone1">Phone 1</label>
+                        <input class="form-control" asp-for="StoPhone1" type="text" value="@Model.StoPhone1" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoFax1">Fax</label>
+                        <input class="form-control" asp-for="StoFax1" type="text" value="@Model.StoFax1" />
+
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoCreditCardTransactionDescription">CC. Transaction Description</label>
+                        <input class="form-control" asp-for="StoCreditCardTransactionDescription" type="text" required="" value="@Model.StoCreditCardTransactionDescription" />
+                        <div class="invalid-feedback">Please provide a Credit Card Transaction Description.</div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoNameForWebPageTitles">Name For Web Page Titles</label>
+                        <input class="form-control" asp-for="StoNameForWebPageTitles" type="text" required="" value="@Model.StoNameForWebPageTitles" />
+                        <div class="invalid-feedback">Please provide a Web Page Title.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="BusinessUnit">Business Unit</label>
+                        <input class="form-control" asp-for="BusinessUnit" type="text" required="" value="@Model.BusinessUnit" maxlength="10" />
+                        <div class="invalid-feedback">Please provide a Business Unit.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StartDate">Start Date</label>
+                        <input class="form-control datetimepicker flatpickr-input" id="datetimepicker" type="text" placeholder="dd/mm/yyyy hour : minute" data-options="{&quot;enableTime&quot;:true,&quot;dateFormat&quot;:&quot;d/m/y H:i&quot;,&quot;disableMobile&quot;:true}" readonly="readonly">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="EndDate">End Date</label>
+                        <input class="form-control datetimepicker flatpickr-input" id="datetimepicker" type="text" placeholder="dd/mm/yyyy hour : minute" data-options="{&quot;enableTime&quot;:true,&quot;dateFormat&quot;:&quot;d/m/y H:i&quot;,&quot;disableMobile&quot;:true}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="FreightCalculator">Freight Calculator</label>
+                        <select class="form-select" asp-for="FreightCalculator" aria-label="Freight Calculator">
+                            <option value="1">By Weight</option>
+                            <option value="2">Rize Shipping</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="LayoutTemplate">Layout Template</label>
+                        <select class="form-select" asp-for="LayoutTemplate" aria-label="Layout Template">
+                            <option value="">Default</option>
+                            <option value="Promoteer">Promoteer</option>
+                            <option value="Vopz">Vopz</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-check" style="margin-top: 30px;">
+                            @Html.CheckBox("EnableMerchandisingScore", Model.EnableMerchandisingScore, new { @class = "form-check-input" })
+
+                            <label class="form-check-label mb-0" asp-for="EnableMerchandisingScore">Enable Merchandising Score</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-check" style="margin-top: 30px;">
+                            @Html.CheckBox("AllowAop", Model.AllowAop, new { @class = "form-check-input" })
+                            <label class="form-check-label mb-0" asp-for="AllowAop">Allow Aop</label>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                @* Email Section *@
+                <hr class="mb-2 mt-4" />
+                <div class="row mt-3 mb-1">
+                    <div class="col-12">
+                        <h5>Emails</h5>
+                    </div>
+                </div>             
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoSupportEmail">Support Email</label>
+                        <input class="form-control" type="email" required="" asp-for="StoSupportEmail" value=" @Model.StoSupportEmail" />
+                        <div class="invalid-feedback">Please provide a Support Email.</div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoArtworkEmail">Artwork Email</label>
+                        <input class="form-control" type="email" asp-for="StoArtworkEmail" value="@Model.StoArtworkEmail" />
+                        <div class="invalid-feedback">Please provide a Artwork Email.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="BillingEmail">Billing Email</label>
+                        <input class="form-control" type="email" asp-for="BillingEmail" required="" value="@Model.BillingEmail" />
+                        <div class="invalid-feedback">Please provide a Billing Email.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoOrderEmail">Order Email</label>
+                        <input class="form-control" type="email" required="" asp-for="StoOrderEmail" value="@Model.StoOrderEmail" />
+                        <div class="invalid-feedback">Please provide a Order Email.</div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoShippingEmail">Shipping Email</label>
+                        <input class="form-control" type="email" required="" asp-for="StoShippingEmail" value="@Model.StoShippingEmail" />
+                        <div class="invalid-feedback">Please provide a Shipping Email.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="StoStockEmail">Stock Email</label>
+                        <input class="form-control" type="email" required="" asp-for="StoStockEmail" value="@Model.StoStockEmail" />
+                        <div class="invalid-feedback">Please provide a Stock Email.</div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" asp-for="YearlyOrderReminderEmail">Yearly Orde rReminder Email</label>
+                        <input class="form-control" type="email" required="" asp-for="YearlyOrderReminderEmail" value="@Model.YearlyOrderReminderEmail" />
+                        <div class="invalid-feedback">Please provide a Stock Email.</div>
+                    </div>
+                </div>
+
+
+                @* Text Area Section *@
+                <hr class="mb-2 mt-4" />
+                <div class="row mt-3 mb-1">
+                    <div class="col-12">
+                        <h5>Metadata and Message</h5>
+                    </div>
+                </div>             
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label" asp-for="StoCardDetailPageMetaTagDescription">Card Detail Page MetaTag Description</label>
+                        <textarea class="form-control" asp-for="StoCardDetailPageMetaTagDescription" rows="3" value="@Model.StoCardDetailPageMetaTagDescription"> </textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" asp-for="StoCardDetailPageMetaTagKeywords">Card Detail Page MetaTag Keywords</label>
+                        <textarea class="form-control" asp-for="StoCardDetailPageMetaTagKeywords" rows="3" value="@Model.StoCardDetailPageMetaTagKeywords"> </textarea>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" asp-for="StoreClosingMessage">Store Closin Message</label>
+                        <textarea class="form-control" asp-for="StoreClosingMessage" rows="3" value="@Model.StoreClosingMessage"> </textarea>
+                    </div>
+                </div>
+
+                <hr class="mb-2 mt-4" />
+
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
