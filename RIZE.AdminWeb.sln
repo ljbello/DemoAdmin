@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RIZE.AdminWeb", "Rize.Admin\RIZE.AdminWeb.csproj", "{EBA20877-5BDE-4952-85C7-4EADE61387DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rize.Model", "Rize.Model\Rize.Model.csproj", "{DEABC695-25C9-494A-9D41-56A6D46D65EB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RizeDB", "RizeDB\RizeDB.sqlproj", "{06EF4DD9-C4C9-4C83-BE79-195C7AD8224F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rize.Admin.Data", "Rize.Admin.Data\Rize.Admin.Data.csproj", "{F8C279D5-E2C3-4A6D-B953-ADD47660CCFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rize.Admin.Services", "Rize.Admin.Services\Rize.Admin.Services.csproj", "{11B96018-8713-4E9F-B6D1-656ECC3858A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rize.Middlewares", "Rize.Middlewares\Rize.Middlewares.csproj", "{1AE03129-57E0-44B2-8771-493A4F643170}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBA20877-5BDE-4952-85C7-4EADE61387DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA20877-5BDE-4952-85C7-4EADE61387DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA20877-5BDE-4952-85C7-4EADE61387DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA20877-5BDE-4952-85C7-4EADE61387DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEABC695-25C9-494A-9D41-56A6D46D65EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEABC695-25C9-494A-9D41-56A6D46D65EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEABC695-25C9-494A-9D41-56A6D46D65EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEABC695-25C9-494A-9D41-56A6D46D65EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06EF4DD9-C4C9-4C83-BE79-195C7AD8224F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06EF4DD9-C4C9-4C83-BE79-195C7AD8224F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06EF4DD9-C4C9-4C83-BE79-195C7AD8224F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{06EF4DD9-C4C9-4C83-BE79-195C7AD8224F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06EF4DD9-C4C9-4C83-BE79-195C7AD8224F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06EF4DD9-C4C9-4C83-BE79-195C7AD8224F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F8C279D5-E2C3-4A6D-B953-ADD47660CCFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C279D5-E2C3-4A6D-B953-ADD47660CCFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C279D5-E2C3-4A6D-B953-ADD47660CCFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C279D5-E2C3-4A6D-B953-ADD47660CCFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11B96018-8713-4E9F-B6D1-656ECC3858A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11B96018-8713-4E9F-B6D1-656ECC3858A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11B96018-8713-4E9F-B6D1-656ECC3858A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11B96018-8713-4E9F-B6D1-656ECC3858A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE03129-57E0-44B2-8771-493A4F643170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE03129-57E0-44B2-8771-493A4F643170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE03129-57E0-44B2-8771-493A4F643170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE03129-57E0-44B2-8771-493A4F643170}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {45F407F0-637E-4819-BE8D-BEFCC3D54D9E}
+	EndGlobalSection
+EndGlobal
