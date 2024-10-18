@@ -1,0 +1,191 @@
+﻿@model List<Rize.Admin.Data.ViewModels.MenuUIVM>
+
+@functions {
+
+    string ToCamelCase(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            return input;
+
+        // Use the built-in TextInfo to convert to title case
+        var textInfo = System.Globalization.CultureInfo.CurrentCulture.TextInfo;
+        return textInfo.ToTitleCase(input.ToLower());
+    }
+
+    string IconFinder(string icon)
+    {
+        return icon switch
+        {
+            "view_quilt" => "pie-chart",
+            "input" => "bookmark",
+            "people" => "users",
+            "av_timer" => "clipboard",
+            "apps" => "grid",
+            "monetization_on" => "dollar-sign",
+            "desktop_mac" => "monitor",
+            "insert_chart" => "trello",
+            "settings" => "tool",
+            "loyalty" => "tag",
+            "rss_feed" => "rss",
+            "print" => "truck",
+            "fullscreen" => "codesandbox",
+            "help" => "help-circle",
+            _ => "minus"
+        };
+    }
+    // Recursive function to draw the menu items
+    string RenderMenuItems(List<Rize.Admin.Data.ViewModels.MenuUIVM> menuItems)
+    {
+        var html = new System.Text.StringBuilder();
+
+        if (menuItems == null || !menuItems.Any())
+            return string.Empty;
+
+        foreach (var menuItem in menuItems)
+        {
+            var menuLabel = ToCamelCase(menuItem.DisplayName);
+            // If there are submenus, render them recursively
+            if (menuItem.Submenus != null && menuItem.Submenus.Any())
+            {
+
+                
+                html.AppendLine($@"
+                    <li class='nav-item'>
+                        <div class='nav-item-wrapper'>
+                            <a class='nav-link dropdown-indicator label-1' href='#nv-{menuItem.TreeNodeID}' role='button' data-bs-toggle='collapse' aria-expanded='false' aria-controls='nv-{menuItem.TreeNodeID}'>
+                                <div class='d-flex align-items-center'>
+                                    <div class='dropdown-indicator-icon-wrapper'>
+                                        <span class='fas fa-caret-right dropdown-indicator-icon'></span>
+                                    </div>
+                                    <span class='nav-link-icon'>
+                                        <span data-feather='{IconFinder(menuItem.NodeIconID)}'></span>
+                                   </span>
+                                   <span class='nav-link-text'>{menuLabel}</span>
+                                </div>
+                            </a>
+                            <div class='parent-wrapper label-1'>
+                                <ul class='nav collapse parent' data-bs-parent='#navbarVerticalCollapse' id='nv-{menuItem.TreeNodeID}'>
+                                    <li class='collapsed-nav-item-title d-none'>{menuLabel}</li>
+
+                                        {RenderMenuItems(menuItem.Submenus.ToList())}
+                                </ul>
+                            </div>
+                        </div>
+                    </li>");
+            }
+            else
+            {
+                // Render a simple menu item without submenus
+                var url = menuItem.Url ?? "#";
+
+                var htmltoappend = string.Empty;
+
+                if (menuItem.MenuType == 2) //(int)MenuType.ExternalPage
+                {
+                    //TODO: Fix external Iframe
+                    htmltoappend = $@"
+                    <li class='nav-item'>
+                        <a class='nav-link' href='{url}' role='button' data-bs-toggle='' aria-expanded='false'>
+                            <div class='d-flex align-items-center'>
+                                <span class='nav-link-text' style='padding-left: 1px;'>{menuLabel}</span>
+                            </div>
+                        </a>
+                    </li>";
+
+                }
+                else if (menuItem.MenuType == 3)
+                {
+
+                    //TODO Modify the external URL in the DB to be in the format 'URL'
+
+                    url = "https://fidelitystore.rizeorders.com/?taylorSSO=7521acbc-a68c-41e5-a975-1cf83066dd19";
+
+                    htmltoappend = $@"
+                    <li class='nav-item'>
+                        <a class='nav-link' href='{url}' target='_blank' role='button' data-bs-toggle='' aria-expanded='false'>
+                            <div class='d-flex align-items-center'>
+                                <span class='nav-link-text' style='padding-left: 1px;'>{menuLabel}</span>
+                            </div>
+                        </a>
+                    </li>";
+
+                }
+                else
+                {
+                    htmltoappend = $@"
+                    <li class='nav-item'>
+                        <a class='nav-link' href='{url}' role='button' data-bs-toggle='' aria-expanded='false'>
+                            <div class='d-flex align-items-center'>
+                                <span class='nav-link-text' style='padding-left: 1px;'>{menuLabel}</span>
+                            </div>
+                        </a>
+                    </li>";
+                }
+
+                html.AppendLine(htmltoappend);
+            }
+        }
+
+        return html.ToString();
+    }
+}
+
+<!-- ===============================================-->
+<!--    Sidebar Content-->
+<!-- ===============================================-->
+<nav class="navbar navbar-vertical navbar-expand-lg">
+<div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+    <!-- scrollbar removed-->
+    <div class="navbar-vertical-content">
+        <ul class="navbar-nav flex-column" id="navbarVerticalNav">
+            @Html.Raw(RenderMenuItems(Model))
+
+        </ul>
+    </div>
+</div>
+<div class="navbar-vertical-footer">
+    <button class="btn navbar-vertical-toggle border-0 fw-semibold w-100 white-space-nowrap d-flex align-items-center">
+        <span class="uil uil-left-arrow-to-left fs-8" data-feather="chevron-left"></span>
+        <span class="uil uil-arrow-from-right fs-8" data-feather="chevron-right"></span>
+        <span class="navbar-vertical-footer-text ms-2">Collapsed View</span>
+    </button>
+</div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var currentUrl = window.location.pathname.toLowerCase();
+        var menuItems = document.querySelectorAll('.nav-link');
+
+        menuItems.forEach(function (menuItem) {
+            var menuItemUrl = menuItem.getAttribute('href')?.toLowerCase();
+
+            if (menuItemUrl && currentUrl.includes(menuItemUrl) || (menuItemUrl == '/home' && currentUrl=="/")) {
+                menuItem.classList.add('active');
+
+                var iconSpan = menuItem.querySelector('span[data-feather]');
+                if (iconSpan) {
+                    iconSpan.setAttribute('data-feather', 'check');
+                }
+
+                var parentCollapse = menuItem.closest('.parent-wrapper');
+                if (parentCollapse) {
+                    var parentLink = parentCollapse.previousElementSibling;
+                    if (parentLink) parentLink.setAttribute('aria-expanded', 'true');
+
+                    var submenu = parentCollapse.querySelector('.collapse');
+                    if (submenu) submenu.classList.add('show');
+                }
+            } else {
+                menuItem.classList.remove('active');
+            }
+        });
+
+        // Replace feather icons after all updates
+        feather.replace({
+            width: '16px',
+            height: '16px'
+        });
+    });
+
+</script>
